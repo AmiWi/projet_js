@@ -7,6 +7,9 @@ const express = require('express');
 const app = express();
 
 var Users = require('./client/models/user.js');
+var Devices = require('./client/models/devices.js');
+
+var particle = new Particle();
 
 //ecouteur d'évenements
 var server = require('http').createServer(app);
@@ -71,7 +74,7 @@ app.get('/', function(req,res){
     res.sendFile(__dirname + '/index.html');
 });
 
-//..................................................................................
+//..............................UTILISATEURS...................................
 
 //Récupération des utilisateurs
 app.get('/home',function(req,res){
@@ -85,3 +88,72 @@ app.get('/home',function(req,res){
         }
     });
 });
+
+//Ajout d'un utilisateur
+app.post('/home', function(req, res) {
+    // console.log(req);
+    console.log(req.body);
+    console.log("Nom " + req.body.nom);
+
+    var userToSave = new Users(req.body);
+
+    userToSave.save(function(err, success){
+            if(err){
+                return console.log(err);
+            }
+            else{
+                console.log(success);
+                res.send(success);
+
+            }
+        });
+    
+});
+
+
+//................................DEVICES..........................................
+//Récupération des devices en BDD
+app.get('/device',function(req,res){
+    Devices.find({},null,function(err,collection){
+        if(err){
+            console.log(err);
+            return res.send(500);
+        }else{
+            // console.log(collection);
+            res.send(JSON.stringify(collection));
+        }
+    });
+});
+
+/*particle.login({username: 'mail', password: 'mdp'}).then(
+  function(data) {
+    token = data.body.access_token;
+    console.log('Ca marche!');
+
+    var devicesPr = particle.listDevices({ auth: token });
+    
+    devicesPr.then(
+      function(devices) {
+          console.log('Devices: ', devices);
+          // devices = JSON.parse(devices);
+          console.log(devices.body);
+          devices.body.forEach(function(device){
+            var toSave = new Devices(device);
+            
+
+            toSave.save(function(err, success){
+              if(err){
+                console.log(err);
+              }
+              else{
+                console.log('device saved');
+              }
+            })
+          });
+      },
+      function(err) {
+        console.log('List devices call failed: ', err);
+      }
+    );
+  }
+);*/

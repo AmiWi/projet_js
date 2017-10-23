@@ -1,0 +1,11 @@
+<article>
+	<h1>Liste des devices</h1>
+
+	<div class="row">
+		<ul class="list-group">
+			<li ng-repeat="n in devices" id="item{{n._id}}" >
+				<a ng-href="#!/{{n._id}}">{{n.name}}</a>
+			</li>
+		</ul>
+	</div>
+</article>
