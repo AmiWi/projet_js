@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Projet JS : 23 octobre</title>
+    <!-- Style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="client/assets/css/css.css">
+    <!-- JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-resource.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+
+<body>
+
+    <article class="col-xs-4">
+        <ul>
+            <li><a href="/">Liste des utilisateurs</a></li>
+            <li><a href="">Liste des boitiers</a></li>
+        </ul>
+    </article>
+
+	<div ng-app="app" class="col-xs-8">
+
+		<div ng-view></div>
+
+	</div>
+
+    <script src="client/app.js"></script>
+    <script src="client/services/userService.js"></script>
+    <script src="client/controller/userCtrl.js"></script>
+
+
+<!--     <script type="text/javascript">
+        var socket = io.connect('http://localhost:3000');
+            socket.on("monsocket",function(socket){
+            console.log(socket);
+        });
+    </script> -->
+
+</body>
+</html>
