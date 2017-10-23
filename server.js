@@ -76,7 +76,7 @@ app.get('/', function(req,res){
 
 //..............................UTILISATEURS...................................
 
-//Récupération des utilisateurs
+//Récupération des utilisateurs................
 app.get('/home',function(req,res){
     Users.find({},null,function(err,collection){
         if(err){
@@ -89,11 +89,11 @@ app.get('/home',function(req,res){
     });
 });
 
-//Ajout d'un utilisateur
+//Ajout d'un utilisateur.......................
 app.post('/home', function(req, res) {
     // console.log(req);
-    console.log(req.body);
-    console.log("Nom " + req.body.nom);
+    //console.log(req.body);
+    //console.log("Nom " + req.body.nom);
 
     var userToSave = new Users(req.body);
 
@@ -110,6 +110,23 @@ app.post('/home', function(req, res) {
     
 });
 
+//Détails de l'utilisateur...................
+app.get('/home/:id', function(req, res) {
+    //console.log(req.params);
+    //console.log(req.params.id);
+    Users.findOne({
+        "_id": req.params.id
+    }, function(err, detailsUser) {
+        if (err) {
+            console.log(err);
+            return res.send(err);
+        } else {
+            res.send(detailsUser);
+        }
+    });
+
+
+});
 
 //................................DEVICES..........................................
 //Récupération des devices en BDD

@@ -19,6 +19,17 @@ function($routeProvider,$locationProvider){
             templateUrl:'client/views/add.html', 
             controller: "addCtrl"
         })
+        .when("/home/:id", {
+            templateUrl: 'client/views/details.html',
+            controller: "detailsUserCtrl",
+            resolve:{
+                details : function(usersFactory, $route){
+                    //console.log($route);
+                    //console.log($route.current.params.id);
+                    return usersFactory.get({userId : $route.current.params.id});
+                }
+            }
+        })
         .when('/device', {
             templateUrl:'client/views/devices.html', 
             controller: "deviceCtrl",
