@@ -154,7 +154,7 @@ app.get('/device',function(req,res){
     });
 });
 
-particle.login({username: 'leo@greenberry.io', password: 'stc110686'}).then(
+particle.login({username: 'XXXXXX', password: 'XXXXXX'}).then(
   function(data) {
     token = data.body.access_token;
     console.log('Ca marche!');
