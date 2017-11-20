@@ -6,6 +6,9 @@ const express = require('express');
 
 const app = express();
 
+//********************************
+// tes models sont biens faits, pk les mettre dans le client ???? tu ne les utilise que côté serveur...
+//********************************
 var Users = require('./client/models/user.js');
 var Devices = require('./client/models/devices.js');
 
@@ -28,6 +31,11 @@ promise.then(
     () => {
         console.log('db.connected');
         // je démarre mon serveur node sur le port 3000
+
+
+        //********************************
+        // si tu veux que ton client puisse se connecter au serveur de socket, c'est server.liste et non pas app.listen...
+        //********************************
         app.listen(3000, function() {
             console.log('listening on 3000 and database is connected');
         });
@@ -65,6 +73,10 @@ app.use(bodyParser.json());
 //..................................................................................
 
 // je déclare mon dossier qui contient mes vues
+
+        //********************************
+        //le dossier ./views n'existe pas, il y en a un dans ./client/views à la limite mais ce n'est pas ça que tu voulais faire
+        //********************************
 app.set('views', './views');
 
 // je déclare mes fichiers statiques
@@ -142,7 +154,7 @@ app.get('/device',function(req,res){
     });
 });
 
-/*particle.login({username: 'mail', password: 'mdp'}).then(
+particle.login({username: 'leo@greenberry.io', password: 'stc110686'}).then(
   function(data) {
     token = data.body.access_token;
     console.log('Ca marche!');
@@ -173,4 +185,4 @@ app.get('/device',function(req,res){
       }
     );
   }
-);*/
+);
